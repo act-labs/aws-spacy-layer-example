@@ -1,0 +1,19 @@
+
+
+service: aws-spacy-layer-example
+
+provider:
+  name: aws
+  runtime: python3.7
+
+functions:
+  nouns:
+    handler: handler.nouns
+    layers:
+      - arn:aws:lambda:${self:provider.region}:113088814899:layer:Klayers-python37-spacy:1    
+    events:
+      - http:
+          path: nouns
+          method: post
+          cors: true
+
